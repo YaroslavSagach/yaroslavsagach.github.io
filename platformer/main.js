@@ -16,13 +16,11 @@ var mainState = {
         // Here we set up the game, display sprites, etc.
 		game.stage.backgroundColor = '#3498db';
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-		game.world.centerX = 250;
-		game.world.centerY = 170;
-		
+	
 		this.createWorld();
 		
 		this.player.anchor.setTo(0.5, 0.5);
-		this.player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
+		this.player = game.add.sprite(250, 170, 'player');
 		// Tell Phaser that the player will use the Arcade physics engine
 		game.physics.arcade.enable(this.player); 
 
