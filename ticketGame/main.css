@@ -1,0 +1,44 @@
+html{
+	height:100%;
+}
+body{	
+    position:relative;
+	height:100%;
+	background-image: url('img/background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding:0px;
+	margin:0px;
+}
+
+#ticket{
+	margin:0px;
+	padding:0px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left: -432px;
+	margin-top: -270px;
+	width: 864px;
+	height: 540px;
+	background-image: url('img/ticket.png');
+	background-position: left top;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity:0.95;
+}
+
+#menu{
+	margin:0px;
+	padding:0px;
+	position:fixed;
+	width: 360px;
+	height: 640px;
+	left:100%;
+	top:50%;
+	margin-top:-320px;
+	margin-left:-45px;
+	background-image: url('img/menu.png');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}	
