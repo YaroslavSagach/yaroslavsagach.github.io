@@ -4,9 +4,7 @@ var mainState = {
     // We define the 3 default Phaser functions
 
     preload: function() {
-        // This function will be executed at the beginning
-        // That's where we load the game's assets
-		game.load.image('player', 'assets/player.png');
+        game.load.image('player', 'assets/player.png');
 		game.load.image('wallV', 'assets/wallVertical.png');
 		game.load.image('wallH', 'assets/wallHorizontal.png');
     },
@@ -16,15 +14,11 @@ var mainState = {
         // Here we set up the game, display sprites, etc.
 		game.stage.backgroundColor = '#3498db';
 		game.physics.startSystem(Phaser.Physics.ARCADE);
-	
 		this.createWorld();
 		
-		this.player.anchor.setTo(0.5, 0.5);
 		this.player = game.add.sprite(250, 170, 'player');
-		// Tell Phaser that the player will use the Arcade physics engine
+		this.player.anchor.setTo(0.5, 0.5);
 		game.physics.arcade.enable(this.player); 
-
-		// Add vertical gravity to the player
 		this.player.body.gravity.y = 500;
 		
 		this.cursor = game.input.keyboard.createCursorKeys();
@@ -33,10 +27,35 @@ var mainState = {
     update: function() {
         // This function is called 60 times per second 
         // It contains the game's logic
-		// Tell Phaser that the player and the walls should collide
 		game.physics.arcade.collide(this.player, this.walls);
 		this.movePlayer();
     },
+	movePlayer: function() {
+		// If the left arrow key is pressed
+		if (this.cursor.left.isDown) {
+			// Move the player to the left
+			this.player.body.velocity.x = -200;
+		}
+
+		// If the right arrow key is pressed
+		else if (this.cursor.right.isDown) {
+			// Move the player to the right
+			this.player.body.velocity.x = 200;
+		}
+
+		// If neither the right or left arrow key is pressed
+		else {
+			// Stop the player
+			this.player.body.velocity.x = 0;
+		}
+
+		// If the up arrow key is pressed and the player is touching the ground
+		
+		if (this.cursor.up.isDown && this.player.body.touching.down) {
+			// Move the player upward (jump)
+			this.player.body.velocity.y = -320;
+		}      
+	},
 	createWorld: function() {
 		// Create our wall group with Arcade physics
 		this.walls = game.add.group();
@@ -62,31 +81,7 @@ var mainState = {
 		// Set all the walls to be immovable
 		this.walls.setAll('body.immovable', true);
 	},
-	movePlayer: function() {
-		// If the left arrow key is pressed
-		if (this.cursor.left.isDown) {
-			// Move the player to the left
-			this.player.body.velocity.x = -200;
-		}
-
-		// If the right arrow key is pressed
-		else if (this.cursor.right.isDown) {
-			// Move the player to the right
-			this.player.body.velocity.x = 200;
-		}
-
-		// If neither the right or left arrow key is pressed
-		else {
-			// Stop the player
-			this.player.body.velocity.x = 0;
-		}
-
-		// If the up arrow key is pressed and the player is touching the ground
-		if (this.cursor.up.isDown &amp;&amp; this.player.body.touching.down) {
-			// Move the player upward (jump)
-			this.player.body.velocity.y = -320;
-		}      
-	},
+ 
 };
 // Create a 500px by 340px game in the 'gameDiv' element of the index.html
 var game = new Phaser.Game(500, 340, Phaser.AUTO, 'gameDiv');
