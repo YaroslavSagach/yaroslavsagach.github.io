@@ -1,9 +1,72 @@
-<!DOCTYPE html>
-<html>
- <head>
- <title>My site</title>
- </head>
- <body>
- <h2>Hello, my name is Yaroslav </h2>
- </body>
- </html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yaroslav Sahach | Software Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <script>
+      const savedTheme = (() => {
+        try {
+          return localStorage.getItem("theme");
+        } catch {
+          return null;
+        }
+      })();
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = savedTheme || (systemDark ? "dark" : "light");
+    </script>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <canvas id="graph-bg" aria-hidden="true"></canvas>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="theme-toggle__icon" aria-hidden="true"></span>
+      <span class="theme-toggle__text">Theme</span>
+    </button>
+
+    <main class="page-shell">
+      <section class="hero" aria-labelledby="intro-title">
+        <img class="profile-photo" src="files/photo.jpg" alt="Yaroslav Sahach">
+
+        <div class="intro">
+          <h3 id="intro-title">Yaroslav Sahach</h3>
+          <p class="role">I am Software Engineer based in Kyiv, Ukraine.</p>
+          <p class="summary">
+            I focus on building reliable and scalable backend systems and services with clean APIs.
+          </p>
+
+          <div class="actions" aria-label="Profile actions">
+            <a class="button primary" href="files/cv.pdf" download>
+              <iconify-icon class="link-icon" icon="lucide:file-text" aria-hidden="true"></iconify-icon>
+              <span>download cv</span>
+            </a>
+            <a class="button ghost" href="mailto:yaroslavsagach@gmail.com">
+              <iconify-icon class="link-icon" icon="lucide:mail" aria-hidden="true"></iconify-icon>
+              <span>email</span>
+            </a>
+          </div>
+
+          <section class="find-me" aria-labelledby="find-me-title">
+            <h2 id="find-me-title">Find me:</h2>
+            <div class="social-links">
+              <a class="button ghost" href="https://www.linkedin.com/in/yaroslavsagach/">
+                <iconify-icon class="link-icon" icon="simple-icons:linkedin" aria-hidden="true"></iconify-icon>
+                <span>linkedin</span>
+              </a>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <small>&copy; 2026 Yaroslav Sahach</small>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
